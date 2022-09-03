@@ -1,0 +1,37 @@
+/** Bookstore:
+Biology
+Chemistry
+History
+Mystery
+Nonfiction
+Fiction
+Music
+Physics
+Programming
+Horror
+Adventure
+Puzzle
+Comedy
+Scientific
+Children
+**/
+
+CREATE TABLE bookstore (id INTEGER PRIMARY KEY, genre TEXT, quantity INTEGER, price INTEGER, released_year INTEGER);
+
+INSERT INTO bookstore VALUES (1, "Biology", 3, 21.99, 2005);
+INSERT INTO bookstore VALUES (2, "Chemistry", 4, 31.99, 1998);
+INSERT INTO bookstore VALUES (3, "History", 1, 47.99, 2009);
+INSERT INTO bookstore VALUES (4, "Mystery", 2, 15.99, 2012);
+INSERT INTO bookstore VALUES (5, "Nonfiction", 8, 11.99, 2019);
+INSERT INTO bookstore VALUES (6, "Fiction", 5, 8.99, 2007);
+INSERT INTO bookstore VALUES (7, "Music", 7, 35.99, 2017);
+INSERT INTO bookstore VALUES (8, "Physics", 4, 128.99, 1998);
+INSERT INTO bookstore VALUES (9, "Programming", 3, 46.99, 2014);
+INSERT INTO bookstore VALUES (10, "Horror", 2, 12.99, 2000);
+INSERT INTO bookstore VALUES (11, "Adventure", 2, 16.99, 2011);
+INSERT INTO bookstore VALUES (12, "Puzzle", 9, 13.99, 2021);
+INSERT INTO bookstore VALUES (13, "Comedy", 10, 14.99, 2019);
+INSERT INTO bookstore VALUES (14, "Scientific", 15, 28.99, 2008);
+INSERT INTO bookstore VALUES (15, "Children", 13, 23.99, 1999);
+
+SELECT * FROM bookstore ORDER BY price
