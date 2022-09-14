@@ -1,0 +1,100 @@
+We’ve curated a set of interesting data sets for you: NASA astronauts, Superbowl results, Pokemon stats, NBA players, Top movies, Top countries by population, Solar system objects by size, Marvel characters, Furniture store sales, Earned KA badges, Winston's donut logs, Card game results, and NFL draft picks.
+
+Pick one of those data sets or create a data set like that, and use advanced SELECT queries to discover things about the data. What sort of questions might one have about that data, like if they were using it for an app or a business idea? Here are some ideas:
+
+What are average, max, and min values in the data?
+What about those numbers per category in the data (using HAVING)?
+What ways are there to group the data values that don’t exist yet (using CASE)?
+What interesting ways are there to filter the data (using AND/OR)?
+
+
+
+SELECT * FROM solar_system_objects WHERE type_of_object LIKE "%planet%";
+
+SELECT body, AVG(mass) AS avg_mass FROM solar_system_objects;
+
+SELECT body, MAX(mass) AS max_mass FROM solar_system_objects;
+
+SELECT body, MIN(mass) AS min_mass FROM solar_system_objects;
+
+SELECT body, AVG(mean_radius) AS avg_radius FROM solar_system_objects;
+
+SELECT body, MAX(mean_radius) AS max_radius FROM solar_system_objects;
+
+SELECT body, MIN(mean_radius) AS min_radius FROM solar_system_objects;
+
+SELECT body, AVG(volume) AS avg_volume FROM solar_system_objects;
+
+SELECT body, MAX(volume) AS max_volume FROM solar_system_objects;
+
+SELECT body, MIN(volume) AS min_volume FROM solar_system_objects;
+
+SELECT body, AVG(density) AS avg_density FROM solar_system_objects;
+
+SELECT body, MAX(density) AS max_density FROM solar_system_objects;
+
+SELECT body, MIN(density) AS min_density FROM solar_system_objects;
+
+SELECT body, AVG(surface_gravity) AS avg_surface_gravity FROM solar_system_objects;
+
+SELECT body, MAX(surface_gravity) AS max_surface_gravity FROM solar_system_objects;
+
+SELECT body, MIN(surface_gravity) AS min_surface_gravity FROM solar_system_objects;
+
+
+
+SELECT body, SUM(mean_radius) AS total_mean_radius FROM solar_system_objects
+    GROUP BY body
+    HAVING total_mean_radius;
+    
+SELECT body, SUM(mean_radius_rel) AS total_mean_radius_rel FROM solar_system_objects
+    GROUP BY body
+    HAVING total_mean_radius_rel;
+    
+SELECT body, SUM(volume) AS total_volume FROM solar_system_objects
+    GROUP BY body
+    HAVING total_volume;
+    
+SELECT body, SUM(volume_rel) AS total_volume_rel FROM solar_system_objects
+    GROUP BY body
+    HAVING total_volume_rel;
+    
+SELECT body, SUM(mass) AS total_mass FROM solar_system_objects
+    GROUP BY body
+    HAVING total_mass;
+    
+SELECT body, SUM(mass_rel) AS total_mass_rel FROM solar_system_objects
+    GROUP BY body
+    HAVING total_mass_rel;
+    
+SELECT body, SUM(density) AS total_density FROM solar_system_objects
+    GROUP BY body
+    HAVING total_density;
+    
+SELECT body, SUM(surface_gravity) AS total_surface_gravity FROM solar_system_objects
+    GROUP BY body
+    HAVING total_surface_gravity;
+    
+SELECT body, SUM(surface_gravity_rel) AS total_surface_gravity_rel FROM solar_system_objects
+    GROUP BY body
+    HAVING total_surface_gravity_rel;
+    
+
+
+/* CASE */
+SELECT count(*),
+    CASE
+WHEN mean_radius_rel > 1 THEN "Bigger than Earth"
+WHEN mean_radius_rel = 1 THEN "Earth"
+WHEN mean_radius_rel < 1 THEN "Smaller than Earth"
+END AS "approximate_size_to_earth"
+FROM solar_system_objects
+GROUP BY approximate_size_to_earth;
+
+
+
+/* AND */
+SELECT * FROM solar_system_objects WHERE mean_radius > 10000 AND volume > 5.0;
+
+/* OR */
+SELECT * FROM solar_system_objects WHERE surface_gravity < 3.00 OR mass < 10;
